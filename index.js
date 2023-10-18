@@ -3,6 +3,7 @@ import { PORT, mongoDB } from "./config.js";
 import express from "express"
 import mongoose from "mongoose";
 import booksRoute from './routes/bookRoutes.js';
+import cors from 'cors';
 
 const app = express();
 
@@ -12,6 +13,17 @@ app.get('/', (request, response) => {
     console.log(request)
     return response.status(200).send('Welcome to BookStore BackEnd')
 });
+
+// app.use(cors());
+
+// CORS Policy
+app.use(
+    cors({
+        origin: 'http://localhost:5173',
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type']
+    })
+);
 
 // express router
 app.use('/books', booksRoute);
