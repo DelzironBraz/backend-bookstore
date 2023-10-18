@@ -1,10 +1,14 @@
 
-import { PORT, mongoDB } from "./config.js";
 import express from "express"
 import mongoose from "mongoose";
-import booksRoute from './routes/bookRoutes.js';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
+import booksRoute from './routes/bookRoutes.js';
+
+dotenv.config();
+const PORT = process.env.PORT;
+const mongoDB = process.env.MONGODB_URI;
 const app = express();
 
 app.use(express.json());
